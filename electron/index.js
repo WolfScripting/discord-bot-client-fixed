@@ -20,7 +20,6 @@ async function createWindow() {
 	});
 	win.webContents.on("did-navigate", () => {
 		//win.webContents.executeJavaScript(`document.write(atob("${btoa(html)}"))`); // removed for the first
-		win.webContents.executeJavaScript(`document.getElementsByClassName("container-after-titlebar")[0].innerHTML += atob("${btoa(html)}")`);
 		win.webContents.executeJavaScript(`document.querySelector(".container-after-titlebar").innerHTML = atob("${btoa(html)}")`);
 		win.webContents.executeJavaScript(`
 			const num = document.scripts.length;
