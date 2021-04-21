@@ -10,7 +10,7 @@ async function createWindow() {
 		width: 1920,
 		height: 1080,
 		icon: __dirname + "/buildResources/icon.png",
-		preload: 'preload.js',
+		//preload: 'preload.js',  // removed for the first
 		webPreferences: {
 			webSecurity: true,
 			nodeIntegration: true,
@@ -19,8 +19,8 @@ async function createWindow() {
 		},
 	});
 	win.webContents.on("did-navigate", () => {
-		win.webContents.executeJavaScript(`document.write(atob("${btoa(html)}"))`);
-		
+		//win.webContents.executeJavaScript(`document.write(atob("${btoa(html)}"))`); // removed for the first
+		win.webContents.executeJavaScript(`document.getElementsByClassName("container-after-titlebar")[0].innerHTML += atob("${btoa(html)}")`);	
 	});
 	
 	if (systemPreferences && systemPreferences.askForMediaAccess) systemPreferences.askForMediaAccess("microphone");
@@ -29,6 +29,7 @@ async function createWindow() {
 		require("electron").shell.openExternal(url);
 	});
 	win.loadURL("https://blank.org");
+	win.loadFile('index.html');
 	
 	const filter = {
 		urls: ["<all_urls>"],
