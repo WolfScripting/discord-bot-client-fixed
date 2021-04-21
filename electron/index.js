@@ -10,7 +10,7 @@ async function createWindow() {
 	let win = new BrowserWindow({
 		width: 1920,
 		height: 1080,
-		icon: __dirname + "/buildResources/icon.png",
+		icon: path.join(__dirname, 'buildResources', 'icon.png'),
 		//preload: 'preload.js',  // removed for the first
 		titleBarStyle: "hidden",
 		webPreferences: {
@@ -21,18 +21,8 @@ async function createWindow() {
 		},
 	});
 	win.webContents.on("did-navigate", () => {
-		//win.webContents.executeJavaScript(`document.write(atob("${btoa(html)}"))`); // removed for the first
-		win.webContents.executeJavaScript(`document.querySelector(".container-after-titlebar").innerHTML = atob("${btoa(html)}")`);
-		win.webContents.executeJavaScript(`
-			const num = document.scripts.length;
-			for(var i = 0; i < num; i++){
-				const target = document.querySelector(".container-after-titlebar");
-				var newScript = document.createElement("script");
-				var inlineScript = document.createTextNode(document.scripts.item(i).text);
-				newScript.appendChild(inlineScript); 
-				target.appendChild(newScript);
-			}
-		`);
+		win.webContents.executeJavaScript(`document.write(atob("${btoa(html)}"))`);
+		win.webContents.executeJavaScript(`window.electron.buildTitleBar()`);
 	});
 	
 	if (systemPreferences && systemPreferences.askForMediaAccess) systemPreferences.askForMediaAccess("microphone");
@@ -41,7 +31,6 @@ async function createWindow() {
 		require("electron").shell.openExternal(url);
 	});
 	win.loadURL("https://blank.org");
-	win.loadFile('index.html');
 	
 	const filter = {
 		urls: ["<all_urls>"],
