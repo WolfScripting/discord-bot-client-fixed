@@ -1,2 +1,3 @@
-# discord-bot-client
-the original got patched so i will fix it.
+# Discord Bot Client
+The original bot client got patched, so i will fix it.
+
