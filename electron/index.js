@@ -11,6 +11,7 @@ async function createWindow() {
 		height: 1080,
 		icon: __dirname + "/buildResources/icon.png",
 		//preload: 'preload.js',  // removed for the first
+		titleBarStyle: "hidden",
 		webPreferences: {
 			webSecurity: true,
 			nodeIntegration: true,
