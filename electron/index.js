@@ -11,7 +11,7 @@ async function createWindow() {
 		width: 1920,
 		height: 1080,
 		icon: path.join(__dirname, 'buildResources', 'icon.png'),
-		//preload: 'preload.js',  // removed for the first
+		preload: 'preload.js',
 		titleBarStyle: "hidden",
 		webPreferences: {
 			webSecurity: true,
