@@ -11,7 +11,7 @@ async function createWindow() {
 	let win = new BrowserWindow({
 		width: 1920,
 		height: 1080,
-		icon: __dirname + "/buildResources/icon.png",
+	        icon: path.join(__dirname, 'buildResources', 'icon.png'),
 		frame: false,
 		titleBarStyle: "hidden",
 		webPreferences: {
@@ -24,6 +24,7 @@ async function createWindow() {
 	// win.webContents.openDevTools();
 	win.webContents.on("did-navigate", () => {
 		win.webContents.executeJavaScript(`document.write(atob("${btoa(html)}"))`);
+		win.webContents.executeJavaScript(`window.electron.buildTitleBar()`);
 
 	});
 
