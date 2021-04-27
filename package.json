@@ -29,7 +29,7 @@
 		"module": "^1.2.5",
 		"node-fetch": "^2.6.0",
 		"timers-browserify": "^2.0.11",
-		"webpack": "^4.43.0",
+		"webpack": "^5.35.1",
 		"webpack-cli": "^4.6.0"
 	}
 }
